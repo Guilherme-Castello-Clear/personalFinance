@@ -7,12 +7,44 @@ import {
   Text,
   useColorScheme,
   View,
+  Platform
 } from 'react-native';
 
+import { AreaInput, SubmitButton, SubmitText, Link, LinkText, Background, Container, Logo, Input, } from './styles';
+
+import { useNavigation } from '@react-navigation/native';
+
 export default function SignIn(){
+
+  const navigation = useNavigation();
+  
   return(
-      <View>
-        <Text>Tela Login</Text>
-      </View>
+      <Background>
+        <Container
+          behavior={Platform.OS === 'ios' ? 'padding' : ''}
+          enabled
+        >
+          <Logo
+            source={require('../../assets/Logo.png')}
+          />
+
+          <AreaInput>
+            <Input
+              placeholder="Seu Email"
+            />
+          </AreaInput>
+          <AreaInput>
+            <Input
+              placeholder="Sua Senha"
+            />
+          </AreaInput>
+          <SubmitButton activeOpacity={0.8}>
+            <SubmitText>Acessar</SubmitText>
+          </SubmitButton>
+          <Link onPress={() => navigation.navigate('SignUp')}>
+            <LinkText>Criar uma Conta</LinkText>
+          </Link>
+        </Container>
+      </Background>
     )
 }
