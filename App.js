@@ -9,19 +9,14 @@ import {
   View,
 } from 'react-native';
 
-import styled from 'styled-components/native'
-import { Container, Titulo, Nome, BotaoSujeito, BotaoText } from './src/styles';
-
+import { NavigationContainer } from '@react-navigation/native';
+import Routes from './src/routes/index';
 
 export default function App(){
   return(
-    <Container>
-      <Titulo>Castello</Titulo>
-      <Nome>Fala Castello</Nome>
-
-      <BotaoSujeito onPress={() => alert('a')}>
-        <BotaoText>A</BotaoText>
-      </BotaoSujeito>
-    </Container>
-  )
+      <NavigationContainer>
+        <StatusBar backgroundColor={"#F0F4FF"}/>
+        <Routes/>
+      </NavigationContainer>
+    )
 }
