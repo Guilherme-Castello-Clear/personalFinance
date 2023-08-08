@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -16,10 +16,13 @@ import { useNavigation } from '@react-navigation/native';
 export default function SignUp(){
 
   const navigation = useNavigation()
-  const { user } = useContext(AuthContext)
+  const { user, signUp } = useContext(AuthContext)
+  const [nome, setNome] = useState('') 
+  const [email, setEmail] = useState('') 
+  const [password, setPassword] = useState('') 
 
   function handleSignUp(){
-    alert(user.nome)
+    signUp(nome, email, password)
   }
 
   return(
@@ -31,20 +34,27 @@ export default function SignUp(){
       <AreaInput>
         <Input
           placeholder="Seu Nome"
+          value={nome}
+          onChangeText={text => setNome(text)}
         />
       </AreaInput>
       <AreaInput>
         <Input
           placeholder="Seu Email"
+          value={email}
+          onChangeText={text => setEmail(text)}
         />
       </AreaInput>
       <AreaInput>
         <Input
           placeholder="Sua Senha"
+          value={password}
+          onChangeText={text => setPassword(text)}
+          secureTextEntry={true}
         />
       </AreaInput>
       <SubmitButton activeOpacity={0.8} onPress={handleSignUp}>
-        <SubmitText>Acessar</SubmitText>
+        <SubmitText>Cadastrar</SubmitText>
       </SubmitButton>
       <Link onPress={() => navigation.navigate('SignIn')}>
         <LinkText>Já tenho uma Conta</LinkText>
