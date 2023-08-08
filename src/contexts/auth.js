@@ -5,7 +5,7 @@ export const AuthContext = createContext({});
 
 function AuthProvider({children}){
     const navigate = useNavigation()
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState()
     const [loadingAuth, setLoadingAuth] = useState(false)
 
     async function signUp(nome, email, password){
