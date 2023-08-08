@@ -7,6 +7,7 @@ import {
   Text,
   useColorScheme,
   View,
+  ActivityIndicator
 } from 'react-native';
 
 import { AreaInput, SubmitButton, SubmitText, Link, LinkText, Background, Container, Logo, Input, } from '../SignIn/styles';
@@ -16,12 +17,13 @@ import { useNavigation } from '@react-navigation/native';
 export default function SignUp(){
 
   const navigation = useNavigation()
-  const { user, signUp } = useContext(AuthContext)
+  const { user, signUp, loadingAuth } = useContext(AuthContext)
   const [nome, setNome] = useState('') 
   const [email, setEmail] = useState('') 
   const [password, setPassword] = useState('') 
 
   function handleSignUp(){
+    if(nome === '' || email === '' || password === '') return
     signUp(nome, email, password)
   }
 
@@ -54,7 +56,14 @@ export default function SignUp(){
         />
       </AreaInput>
       <SubmitButton activeOpacity={0.8} onPress={handleSignUp}>
-        <SubmitText>Cadastrar</SubmitText>
+        {
+          loadingAuth ? (
+            <ActivityIndicator size={20} color="#FFF"/>
+          ) : (
+            <SubmitText>Cadastrar</SubmitText>
+          )
+        }      
+        
       </SubmitButton>
       <Link onPress={() => navigation.navigate('SignIn')}>
         <LinkText>Já tenho uma Conta</LinkText>
