@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,12 +10,17 @@ import {
 } from 'react-native';
 
 import { AreaInput, SubmitButton, SubmitText, Link, LinkText, Background, Container, Logo, Input, } from '../SignIn/styles';
-
+import { AuthContext } from '../../contexts/auth';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SignUp(){
 
   const navigation = useNavigation()
+  const { user } = useContext(AuthContext)
+
+  function handleSignUp(){
+    alert(user.nome)
+  }
 
   return(
     <Background>
@@ -38,7 +43,7 @@ export default function SignUp(){
           placeholder="Sua Senha"
         />
       </AreaInput>
-      <SubmitButton activeOpacity={0.8}>
+      <SubmitButton activeOpacity={0.8} onPress={handleSignUp}>
         <SubmitText>Acessar</SubmitText>
       </SubmitButton>
       <Link onPress={() => navigation.navigate('SignIn')}>
