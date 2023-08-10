@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import { format } from 'date-fns';
+import { useNavigation } from '@react-navigation/native';
 
 import api from '../../services/api';
 import RegisterTypes from '../../components/RegisterTypes';
@@ -12,6 +13,7 @@ export default function New(){
   const [labelInput, setLabelInput] = useState('')
   const [valueInput, setValueInput] = useState('')
   const [type, setType] = useState('receita')
+  const navigation = useNavigation()
 
   function handleSubmit(){
     Keyboard.dismiss();
@@ -48,6 +50,7 @@ export default function New(){
 
     setLabelInput('')
     setValueInput('')
+    navigation.navigate('Home')
   }
 
   return(
